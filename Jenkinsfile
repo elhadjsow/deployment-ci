@@ -18,8 +18,8 @@ pipeline {
             steps {
                 echo '🧹 Nettoyage des anciens conteneurs...'
                 bat '''
-                docker stop postgres_db backend_app 2>nul || exit /b 0
-                docker rm postgres_db backend_app 2>nul || exit /b 0
+                docker stop postgres_db backend_app backend_certificat 2>nul || exit /b 0
+                docker rm postgres_db backend_app backend_certificat 2>nul || exit /b 0
                 '''
             }
         }
