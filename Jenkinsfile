@@ -14,6 +14,16 @@ pipeline {
             }
         }
 
+        stage('Clean Old Containers') {
+            steps {
+                echo '🧹 Nettoyage des anciens conteneurs...'
+                bat '''
+                docker stop postgres_db backend_app 2>nul || exit /b 0
+                docker rm postgres_db backend_app 2>nul || exit /b 0
+                '''
+            }
+        }
+
         stage('Pull Latest Images') {
             steps {
                 echo '🐳 Téléchargement des dernières images Docker...'
